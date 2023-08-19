@@ -1,0 +1,52 @@
+#! /bin/bash
+# Nelson Murilo  - 2018/06/21  - AMS (c) 
+# -f file: Create a file with one ip or host per line. 
+# -h host: inform a single the host or ip 
+
+usage() 
+{
+   echo -e "Usage: ssldate [-f file] [-h host] [-p port] [-a]"
+   echo -e "       Default:port=443\n"
+   exit 1
+}
+
+ssldt()
+{   
+   line=$(echo | openssl s_client -servename $1 -connect $1:${port} 2>/dev/null | openssl x509 -noout -dates 2>/dev/null) 
+   if [ "$?" -eq "0" ]; then 
+      before=$(echo ${line} | cut -d= -f 2 | sed 's/notAfter//')
+      after=$(echo ${line} | cut -d= -f 3) 
+      [ "${alert}" = "True" ] && echo "$host up to: ${after}" | egrep --color "$cm|$nm" || echo "$host up to: ${after}" 
+   else
+      echo -e "No TLS reply for $1:$port"
+   fi
+}
+
+port=443 
+host=""
+while getopts 'ap:f:h:' c; do 
+   case $c in 
+      p) port=${OPTARG} ;; 
+      f) file=${OPTARG} ;;
+      h) host=${OPTARG} ;;
+      a) alert=True ;; 
+      *) usage ;; 
+   esac
+done
+
+[ -z "${file}" -a -z "${host}" ] && usage
+[ ! -z "${file}" -a ! -z "${host}" ] && usage
+[ ! -z "${file}" -a ! -f "${file}" ] && usage
+
+nm=$(date -d "+ 1 month" +%b)  # next month
+cm=$(date +%b)                 # current month 
+
+if [ ! -z "${host}" ]; then 
+   ssldt ${host} 
+else 
+   for host in $(cat $file); do 
+      ssldt ${host} 
+   done 
+fi 
+exit 0 
+

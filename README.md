@@ -1,4 +1,5 @@
 # sslversion
+
 Script to verify for certificate expiration date and 
 alert for certificate due to expire. 
 

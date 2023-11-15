@@ -1,6 +1,6 @@
 # ssldate
 
-Script to verify for certificate expiration date and 
+Script to verify the certificate expiration date and 
 alert for certificate due to expire. 
 
 Options: 

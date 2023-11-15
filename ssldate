@@ -1,6 +1,6 @@
 #! /bin/bash
 # Nelson Murilo  - 2018/06/21  - AMS (c) 
-# -f file: Create a file with one ip or host per line. 
+# -f file: A file with one ip or host per line. 
 # -h host: inform a single the host or ip 
 
 usage() 

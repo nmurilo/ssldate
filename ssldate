@@ -3,6 +3,7 @@
 # -f file: A file with one ip or host per line. 
 # -h host: Inform a single the host or ip 
 # -p port: Use another port than 443 instead
+# -a: show info in red if expire date is close 
 
 usage() 
 {

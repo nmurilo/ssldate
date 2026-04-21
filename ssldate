@@ -2,8 +2,8 @@
 # Nelson Murilo  - 2018/06/21  - AMS (c) 
 # -f file: A file with one ip or host per line. 
 # -h host: Inform a single host or ip 
-# -p port: Use another port than 443 instead
-# -a: shows info in red if expire date is close 
+# -p port: Use another port than 443
+# -a: shows info in red if expiration date is close 
 
 usage() 
 {

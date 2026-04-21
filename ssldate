@@ -1,9 +1,9 @@
 #! /bin/bash
 # Nelson Murilo  - 2018/06/21  - AMS (c) 
 # -f file: A file with one ip or host per line. 
-# -h host: Inform a single the host or ip 
+# -h host: Inform a single host or ip 
 # -p port: Use another port than 443 instead
-# -a: show info in red if expire date is close 
+# -a: shows info in red if expire date is close 
 
 usage() 
 {
